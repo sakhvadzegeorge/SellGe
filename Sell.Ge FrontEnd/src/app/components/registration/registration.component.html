@@ -1,0 +1,84 @@
+<form class="container" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+    <div class="login-container">
+        <div class="circle circle-one"></div>
+
+        <div class="form-container">
+            <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png"
+                alt="illustration" class="illustration" />
+
+            <h1 class="opacity">REGISTRATION</h1>
+            <p>TO CREATE ACCOUNT TYPE YOUR CREDENTIALS</p>
+            <hr>
+
+            <div class="form-grid">
+
+                <!-- NAME / LAST NAME -->
+                <div class="form-group">
+                    <label for="firstName">NAME</label>
+                    <input type="text" id="firstName" placeholder="ENTER YOUR NAME" formControlName="firstName"
+                        required>
+
+                    <label for="lastName">LAST NAME</label>
+                    <input type="text" id="lastName" placeholder="ENTER YOUR LASTNAME" formControlName="lastName"
+                        required>
+                </div>
+
+                <!-- AGE / EMAIL -->
+                <div class="form-group">
+                    <label for="age">AGE</label>
+                    <input type="number" id="age" placeholder="18+" formControlName="age" required>
+
+                    <label for="email">EMAIL</label>
+                    <input type="text" id="email" placeholder="sell@sell.ge" formControlName="email" required>
+                </div>
+
+                <!-- PASSWORD / ADDRESS -->
+                <div class="form-group">
+                    <label for="psw">PASSWORD</label>
+                    <input type="password" id="psw" placeholder="MAKE PASSWORD" formControlName="password" required>
+
+                    <label for="address">ADDRESS</label>
+                    <input type="text" id="address" placeholder="WHERE DO YOU LIVE?" formControlName="address" required>
+                </div>
+
+                <!-- PHONE / ZIP -->
+                <div class="form-group">
+                    <label for="phone">PHONE NUMBER</label>
+                    <input type="tel" id="phone" placeholder="+995599123123" formControlName="phone" required>
+
+                    <label for="zipcode">POST</label>
+                    <input type="number" id="zipcode" placeholder="POST INDEX" formControlName="zipCode" required>
+                </div>
+
+                <!-- AVATAR / GENDER -->
+                <div class="form-group">
+                    <label for="avatar">IMAGE</label>
+                    <input type="text" id="avatar" placeholder="YOUR PICTURE URL" formControlName="avatar" required>
+
+                    <label for="gender">GENDER</label>
+                    <div class="gender-options">
+                        <input type="radio" name="gender" id="male" value="MALE" formControlName="gender">
+                        <label for="male">MALE</label>
+
+                        <input type="radio" name="gender" id="female" value="FEMALE" formControlName="gender">
+                        <label for="female">FEMALE</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <p>
+                TO CREATE ACCOUNT ACCEPT OUR
+                <a routerLink="/rules">„TERMS AND CONDITIONS“</a>.
+            </p>
+
+            <button type="submit" class="register-btn" [disabled]="signUpForm.invalid">
+                REGISTER
+            </button>
+        </div>
+
+        <div class="circle circle-two"></div>
+    </div>
+</form>

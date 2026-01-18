@@ -1,0 +1,326 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+
+}
+
+.login-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin-top: 40px;
+}
+
+.form-container {
+    border: 1px solid var(--registration4-color);
+    box-shadow: 0 0 36px var(--card-border-hover-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+    z-index: 1;
+    margin: auto;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--registration1-color);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+hr {
+    border: 0.5px solid var(--registration5-color);
+    margin: 1rem 0;
+}
+
+p {
+    color: var(--registration1-color);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+label {
+    color: var(--registration1-color);
+    margin-top: 1rem;
+    display: block;
+    z-index: 99;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background-color: var(--registration6-color);
+    color: var(--registration1-color);
+    border: 1px solid var(--registration4-color);
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="number"]::placeholder {
+    color: var(--registration10-color);
+}
+
+input:focus {
+    box-shadow: 0 0 8px var(--registration9-color);
+}
+
+
+.register-btn {
+    background-color: var(--registration2-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 14px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+.register-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px var(--registration7-color);
+}
+
+
+.register-btn:disabled {
+    background-color: var(--registration8-color);
+    cursor: not-allowed;
+}
+
+.register-btn:hover:not(:disabled) {
+    cursor: pointer;
+    background-color: var(--registration2-color);
+}
+
+.circle {
+    width: 8rem;
+    height: 8rem;
+    background: var(--registration2-color);
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0.5;
+}
+
+.circle-one {
+    top: 0rem;
+    left: 0rem;
+    transform: translate(-45%, -45%);
+    z-index: 0;
+}
+
+.circle-two {
+    bottom: 0rem;
+    right: 0rem;
+    transform: translate(45%, 45%);
+    z-index: 0;
+}
+
+.illustration {
+    position: absolute;
+    top: -10%;
+    right: -2px;
+    width: 80%;
+}
+
+.register-forget {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 14px;
+    color: var(--registration1-color);
+}
+
+.register-forget a {
+    text-decoration: none;
+    color: var(--registration1-color);
+    margin: 0 0.5rem;
+}
+
+.opacity {
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .circle {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .illustration {
+        position: absolute;
+        top: -4%;
+        right: -2px;
+    }
+}
+
+a {
+    cursor: pointer;
+}
+
+.gender-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background-color: var(--registration6-color);
+    border: 1px solid var(--registration4-color);
+    border-radius: 6px;
+    height: 48px;
+}
+
+.gender-options input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--registration2-color);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 5px;
+    background-color:var(--card-background-color);
+}
+
+.gender-options input[type="radio"]:checked {
+    background-color: var(--registration2-color);
+    box-shadow: 0 0 5px var(--registration2-color);
+}
+
+.gender-options label {
+    font-size: 14px;
+    color: var(--registration1-color);
+    margin-right: 15px;
+    cursor: pointer;
+    bottom: 7px;
+    position: relative;
+}
+
+.gender-options input[type="radio"]:focus-visible {
+    outline: 2px solid var(--registration3-color);
+}
+
+@media screen and (max-width: 550px) {
+    .circle-one {
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transform: translate(0%, -45%);
+    }
+    
+    .circle-two {
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        transform: translate(0%, 45%);
+    }
+}
+
+::ng-deep .swal-glass-popup {
+    background: rgba(169, 169, 169, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .swal-glass-title {
+    color: #808080; 
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+::ng-deep .swal-glass-footer {
+    color: #696969;  
+    text-decoration: none;
+}
+
+::ng-deep .swal2-icon {
+    background: none;
+    border: 2px solid #808080;  
+    color: #808080;  
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-ring {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+::ng-deep .swal2-icon.swal2-success {
+    background: none !important;
+    border: 2px solid #808080; 
+    color: #808080; 
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-ring {
+    border: none !important;
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-line-tip,
+::ng-deep .swal2-icon.swal2-success .swal2-success-line-long {
+    background-color: #808080 !important;
+}
+
+::ng-deep .swal-text {
+    color: #808080; 
+}
+
+::ng-deep .swal-glass-footer a {
+    color: #696969; 
+    text-decoration: none !important;
+    font-size: larger;
+    font-weight: bold;
+}
+
+::ng-deep .swal-glass-footer a:hover {
+    scale: 1.2;
+}
+
+::ng-deep .swal-glass-confirbutton {
+    background-color: #d3d3d3;  
+    color: black; 
+}

@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  list-style: none;
+  text-decoration: none;
+}
+
+button,
+input,
+nav {
+  cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: auto;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.swal2-success-circular-line-left {
+  opacity: 0 !important;
+}
+
+.swal2-success-circular-line-right {
+  opacity: 0 !important;
+}
+
+.swal2-success-fix {
+  opacity: 0 !important;
+}
+
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #007bff;
+  --footer-background-color: #f1f1f1;
+  --header-background-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+header {
+  background-color: var(--header-background-color);
+}
+
+footer {
+  background-color: var(--footer-background-color);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scroll1-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll2-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll3-color);
+}

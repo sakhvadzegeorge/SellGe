@@ -1,0 +1,224 @@
+.container {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.circle {
+    width: 8rem;
+    height: 8rem;
+    background: var(--item2-color);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.circle-one {
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: translate(-45%, -45%);
+}
+
+.circle-two {
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    transform: translate(45%, 45%);
+}
+
+.clothes-details {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    background: var(--border-color);
+    border: 1px solid var(--registration4-color);
+    box-shadow: 0 0 36px 1px var(--item3-color);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+}
+
+.clothes-image img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--card-border-hover-color);
+}
+
+.clothes-info {
+    flex: 1;
+    color: var(--item1-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.clothes-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--item1-color);
+}
+
+.clothes-info p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--item4-color);
+}
+
+.clothes-info p strong {
+    color: var(--item1-color);
+}
+
+.clothes-info .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+.butn {
+    display: flex;
+    gap: 10px;
+}
+
+.butn button {
+    padding: 10px 15px;
+    background-color: var(--item2-color);
+    color: var(--item1-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.butn button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px var(--item5-color);
+}
+
+@media screen and (max-width: 768px) {
+    .clothes-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .clothes-image img {
+        max-width: 100%;
+    }
+
+    .clothes-info h1 {
+        font-size: 2rem;
+    }
+
+    .clothes-info .price {
+        font-size: 1.2rem;
+    }
+
+    .butn button {
+        font-size: 0.9rem;
+    }
+
+    circle {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .circle-one {
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transform: translate(0%, -45%);
+    }
+    
+    .circle-two {
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        transform: translate(0%, 45%);
+    }
+}
+
+
+
+::ng-deep .swal-glass-popup {
+    background: rgba(169, 169, 169, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .swal-glass-title {
+    color: #808080;
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+::ng-deep .swal-glass-footer {
+    color: #696969;
+    text-decoration: none;
+}
+
+::ng-deep .swal2-icon {
+    background: none;
+    border: 2px solid #808080;
+    color: #808080;
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-ring {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+::ng-deep .swal2-icon.swal2-success {
+    background: none !important;
+    border: 2px solid #808080;
+    color: #808080;
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-ring {
+    border: none !important;
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-line-tip,
+::ng-deep .swal2-icon.swal2-success .swal2-success-line-long {
+    background-color: #808080 !important;
+}
+
+::ng-deep .swal-text {
+    color: #808080;
+}
+
+::ng-deep .swal-glass-footer a {
+    color: #696969;
+    text-decoration: none !important;
+    font-size: larger;
+    font-weight: bold;
+}
+
+::ng-deep .swal-glass-footer a:hover {
+    scale: 1.2;
+}
+
+::ng-deep .swal-glass-confirbutton {
+    background-color: #d3d3d3;
+    color: black;
+}
+
+@media screen and (max-width: 900px) {
+
+    .p3tlt:hover,
+    .p3tlt1:hover,
+    .p3mlt:hover,
+    .p3mlt1:hover,
+    .p3blt:hover,
+    .p3brt:hover {
+
+        transform: none;
+    }
+}

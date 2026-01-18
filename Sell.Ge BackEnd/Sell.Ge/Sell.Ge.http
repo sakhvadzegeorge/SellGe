@@ -1,0 +1,6 @@
+@Sell.Ge_HostAddress = http://localhost:5101
+
+GET {{Sell.Ge_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

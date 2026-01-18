@@ -1,0 +1,146 @@
+<div class="loader-container" *ngIf="loading">
+  <div class="loader"></div>
+</div>
+
+<section class="wishlist-container" *ngIf="!loading">
+
+  <div *ngIf="errorMessage" class="error-message"
+    style="color: red; padding: 10px; background: #ffeeee; margin: 10px 0;">
+    {{ errorMessage }}
+  </div>
+
+  <div class="circle circle-one"></div>
+
+  <h1>PROFILE</h1>
+
+  <div class="card" *ngIf="user">
+    <div class="card-left">
+      <div class="avatar-wrap">
+        <img
+          [src]="user.avatar || 'https://www.themarysue.com/wp-content/uploads/2020/04/bro-thor-endgame.jpg?fit=1200%2C733'"
+          alt="User avatar" class="avatar" />
+      </div>
+
+      <h2 class="name">{{ user.firstName }} {{ user.lastName }}</h2>
+      <p class="subtitle">
+        <span class="status-dot" [class.offline]="!isOnline"></span>
+        {{ isOnline ? 'Online' : 'Offline' }}
+      </p>
+
+      <div class="quick-links">
+        <a routerLink="/cart" class="link">Cart</a>
+        <a routerLink="/wish-list" class="link">Wish list</a>
+        <a routerLink="/orders" class="link" *ngIf="user.role==0">Orders</a>
+        <a class="link" routerLink="/purchase" *ngIf="user.role === 1">Pending Orders</a>
+        <a class="link" routerLink="/dashboard" *ngIf="user.role === 1">Products</a>
+      </div>
+
+      <div class="actions">
+        <button class="move-btn" [class.active]="showEdit" (click)="toggleEdit()" [attr.aria-pressed]="showEdit"
+          [disabled]="processing">
+          {{ showEdit ? 'Editing...' : 'Edit Profile' }}
+        </button>
+
+        <button class="move-btn" [class.active]="showPassword" (click)="togglePassword()"
+          [attr.aria-pressed]="showPassword" [disabled]="processing">
+          {{ showPassword ? 'Changing Password...' : 'Change Password' }}
+        </button>
+
+        <button class="delete-button" (click)="terminateAccount()" [disabled]="processing || terminating">
+          {{ terminating ? 'Terminating...' : 'Terminate Account' }}
+        </button>
+
+        <button class="buy" (click)="logout()" [disabled]="processing">
+          Log out
+        </button>
+      </div>
+      <p class="message" [class.success]="messageType === 'success'" [class.error]="messageType === 'error'"
+        *ngIf="message">
+        {{ message }}
+      </p>
+    </div>
+
+    <div class="card-right">
+      <div class="panel edit-panel" *ngIf="showEdit">
+        <h3>Edit Profile</h3>
+        <form [formGroup]="editForm" (ngSubmit)="save()" class="form-grid">
+          <input formControlName="firstName" placeholder="First name" [disabled]="processing" />
+          <input formControlName="lastName" placeholder="Last name" [disabled]="processing" />
+          <input formControlName="age" type="number" placeholder="Age" min="0" [disabled]="processing" />
+          <input formControlName="phone" placeholder="Phone" [disabled]="processing" />
+          <input formControlName="address" placeholder="Address" [disabled]="processing" />
+          <input formControlName="zipCode" placeholder="Zip code" [disabled]="processing" />
+          <input formControlName="avatar" placeholder="Avatar URL" [disabled]="processing" />
+          <div class="form-actions">
+            <button type="submit"class="move-btn" [disabled]="loading || editForm.invalid || processing" >
+              {{ loading ? 'Saving...' : 'Save Changes' }}
+            </button>
+            <button type="button" class="buy" (click)="cancelEdit()" [disabled]="processing">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="panel password-panel" *ngIf="showPassword">
+        <h3>Change Password</h3>
+        <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="form-grid">
+          <input type="password" formControlName="currentPassword" placeholder="Current password"
+            [disabled]="processing" />
+          <input type="password" formControlName="newPassword" placeholder="New password" [disabled]="processing" />
+          <input type="password" formControlName="confirmPassword" placeholder="Confirm new password"
+            [disabled]="processing" />
+          <div class="form-actions">
+            <button type="submit" class="move-btn"
+              [disabled]="passwordForm.invalid || passwordForm.get('newPassword')?.value !== passwordForm.get('confirmPassword')?.value || processing">
+              Change Password
+            </button>
+            <button type="button" class="buy" (click)="cancelPassword()" [disabled]="processing">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="info" *ngIf="!showEdit && !showPassword">
+        <h3>Profile Information</h3>
+        <table class="styled-table">
+          <tbody>
+            <tr>
+              <td><strong>Name:</strong></td>
+              <td>{{ user.firstName }} {{ user.lastName }}</td>
+            </tr>
+            <tr>
+              <td><strong>Age:</strong></td>
+              <td>{{ user.age || 'Not specified' }}</td>
+            </tr>
+            <tr>
+              <td><strong>Phone:</strong></td>
+              <td>{{ user.phone || 'Not specified' }}</td>
+            </tr>
+            <tr>
+              <td><strong>Address:</strong></td>
+              <td>{{ user.address || 'Not specified' }}</td>
+            </tr>
+            <tr>
+              <td><strong>Zip:</strong></td>
+              <td>{{ user.zipCode || 'Not specified' }}</td>
+            </tr>
+            <tr>
+              <td><strong>Gender:</strong></td>
+              <td>
+                {{user.gender === 0 ? 'Prefer not to say' :
+                user.gender === 1 ? 'Male' :
+                user.gender === 2 ? 'Female' : 'Not specified'}}
+              </td>
+            </tr>
+            <tr>
+              <td><strong>UserRole:</strong></td>
+              <td>{{ getRoleText(user.role) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="circle circle-two"></div>
+</section>

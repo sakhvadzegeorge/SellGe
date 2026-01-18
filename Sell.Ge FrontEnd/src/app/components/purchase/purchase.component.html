@@ -1,0 +1,131 @@
+<section class="purchase-container">
+
+  <div class="circle circle-one"></div>
+
+  <h1>PURCHASE MANAGEMENT</h1>
+
+  <div class="tabs">
+    <button class="tab" [class.active]="showPending" (click)="togglePending(); loadAll()">
+      PENDING PURCHASES
+    </button>
+    <button class="tab" [class.active]="showDelivered" (click)="toggleDelivered(); loadHistory()">
+      DELIVERED HISTORY
+    </button>
+  </div>
+
+  <div *ngIf="showPending">
+    <p *ngIf="!loading && pagedPending.length === 0" class="empty-text">
+      No pending purchases.
+    </p>
+
+    <table class="styled-table" *ngIf="pagedPending.length > 0">
+      <thead>
+        <tr>
+          <th>BUYER</th>
+          <th>EMAIL</th>
+          <th>ITEMS</th>
+          <th>TOTAL</th>
+          <th>DATE</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pagedPending" (click)="openDetails(p)">
+          <td>{{p.buyerFirstName}} {{p.buyerLastName}}</td>
+          <td>{{p.buyerEmail}}</td>
+          <td>{{p.totalItems}}</td>
+          <td>${{p.totalPrice}}</td>
+          <td>{{p.purchasedAt}}</td>
+          <td class="actions-cell" (click)="$event.stopPropagation()">
+            <button class="btn primary" (click)="deliverOne(p.id)">DELIVER</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination" *ngIf="pagedPending.length > 0">
+      <button (click)="prevPage()">PREV</button>
+      <span>{{page}} / {{totalPages}}</span>
+      <button (click)="nextPage()">NEXT</button>
+      <button class="btn primary" (click)="deliverAll()">DELIVER ALL</button>
+    </div>
+  </div>
+
+  <div *ngIf="showDelivered">
+    <p *ngIf="!loading && pagedDelivered.length === 0" class="empty-text">
+      No delivered purchases.
+    </p>
+
+    <div class="delivered-actions" *ngIf="pagedDelivered.length > 0 || loading">
+      <button class="btn ghost" (click)="loadHistory()">REFRESH DELIVERED</button>
+    </div>
+
+    <table class="styled-table" *ngIf="pagedDelivered.length > 0">
+      <thead>
+        <tr>
+          <th>BUYER</th>
+          <th>ITEMS</th>
+          <th>TOTAL</th>
+          <th>DELIVERED AT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pagedDelivered" (click)="openDetails(p)">
+          <td>{{p.buyerFirstName}} {{p.buyerLastName}}</td>
+          <td>{{p.totalItems}}</td>
+          <td>${{p.totalPrice}}</td>
+          <td>{{p.deliveredAt || '-'}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination" *ngIf="pagedDelivered.length > 0">
+      <button (click)="prevPage()">PREV</button>
+      <span>{{page}} / {{totalPages}}</span>
+      <button (click)="nextPage()">NEXT</button>
+    </div>
+  </div>
+
+  <div class="circle circle-two"></div>
+
+  <div class="modal" *ngIf="selectedPurchase">
+    <div class="modal-card large">
+      <h3>ORDER DETAILS</h3>
+
+      <div class="modal-info">
+        <p><strong>Buyer:</strong> {{selectedPurchase.buyerFirstName}} {{selectedPurchase.buyerLastName}}</p>
+        <p><strong>Email:</strong> {{selectedPurchase.buyerEmail}}</p>
+        <p><strong>Address:</strong> {{selectedPurchase.buyerAddress || '-'}}</p>
+      </div>
+
+      <table class="styled-table items-table">
+        <thead>
+          <tr>
+            <th>ITEM</th>
+            <th>SIZE</th>
+            <th>QTY</th>
+            <th>PRICE</th>
+            <th>TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of selectedPurchase.items">
+            <td class="item-cell">
+              <img [src]="i.picture" />
+              {{i.itemName}}
+            </td>
+            <td>{{i.size || '-'}}</td>
+            <td>{{i.quantity}}</td>
+            <td>${{i.unitPrice}}</td>
+            <td>${{i.lineTotal}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="modal-actions">
+        <button class="btn ghost" (click)="closeDetails()">CLOSE</button>
+      </div>
+    </div>
+  </div>
+
+</section>

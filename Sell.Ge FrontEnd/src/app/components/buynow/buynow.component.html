@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="payment-container">
+        <div class="form-container">
+            <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png"
+                alt="Background Illustration" class="illustration" />
+
+            <h1>Card Payment</h1>
+
+            <form (ngSubmit)="purchase()" autocomplete="off" novalidate>
+                <input type="text" placeholder="Cardholder Name" required name="cardholder" [(ngModel)]="cardholder" />
+
+                <input type="text" placeholder="Card Number" inputmode="numeric" maxlength="19" required
+                    name="cardnumber" (input)="formatCardNumber($event)" [value]="cardNumber" />
+
+                <div class="input-row">
+                    <div class="input-col">
+                        <input type="text" placeholder="Expiry (MM/YY)" inputmode="numeric" maxlength="5" required
+                            name="expiry" (input)="formatExpiry($event)" [value]="expiry" />
+                    </div>
+
+                    <div class="input-col">
+                        <input type="text" placeholder="CVV" inputmode="numeric" maxlength="4" required name="cvv"
+                            (input)="formatCvv($event)" [value]="cvv" />
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="loading">
+                    {{ loading ? 'Processing...' : 'Pay Now' }}
+                </button>
+
+                <p *ngIf="error" class="error">{{ error }}</p>
+            </form>
+        </div>
+
+        <div class="circle circle-one"></div>
+        <div class="circle circle-two"></div>
+    </div>
+</div>

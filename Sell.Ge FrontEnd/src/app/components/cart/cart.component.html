@@ -1,0 +1,66 @@
+<div class="loader-container" *ngIf="loading">
+  <div class="loader">
+    <div class="cell d-0"></div>
+    <div class="cell d-1"></div>
+    <div class="cell d-2"></div>
+    <div class="cell d-1"></div>
+    <div class="cell d-2"></div>
+    <div class="cell d-2"></div>
+    <div class="cell d-3"></div>
+    <div class="cell d-3"></div>
+    <div class="cell d-4"></div>
+  </div>
+</div>
+
+<section class="cart-container">
+  <div class="circle circle-one"></div>
+
+  <h1>CART</h1>
+
+  <table class="styled-table" *ngIf="basket.items.length > 0; else emptyCart">
+    <thead>
+      <tr>
+        <th>PICTURE</th>
+        <th>NAME</th>
+        <th>SIZE</th>
+        <th>QUANTITY</th>
+        <th>PRICE</th>
+        <th>DELETE</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of basket.items; trackBy: trackByItem">
+        <td><img [src]="item.picture" class="item-image" alt="{{ item.name }}" /></td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.size }}</td>
+
+        <td class="qty-box">
+          <button class="qty-btn" (click)="updateItemQuantity(item.itemId, (item.quantity || 0) - 1)">-</button>
+          <span class="qty-value">{{ item.quantity }}</span>
+          <button class="qty-btn" (click)="updateItemQuantity(item.itemId, (item.quantity || 0) + 1)">+</button>
+        </td>
+
+        <td>${{ computeLineTotal(item) }}</td>
+
+        <td>
+          <button class="delete-button" (click)="removeItem(item.itemId)">✕</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #emptyCart>
+    <h2 class="empty">Your cart is empty</h2>
+  </ng-template>
+
+  <div class="total-price-container" *ngIf="basket.items.length > 0">
+    <div class="total-box">
+      <h1>TOTAL PRICE</h1>
+      <h1 class="red">${{ basket.totalPrice }}</h1>
+    </div>
+   <button class="buy" routerLink="/buynow">BUY NOW</button>
+  </div>
+
+  <div class="circle circle-two"></div>
+</section>

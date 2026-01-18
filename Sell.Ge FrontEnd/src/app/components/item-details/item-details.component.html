@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="clothes-details" *ngIf="itemSource === 'clothes' && itemDetails">
+        <div class="circle circle-one"></div>
+        <div class="circle circle-two"></div>
+        <div class="clothes-image">
+            <img [src]="itemDetails.picture" [alt]="itemDetails.name">
+        </div>
+        <div class="clothes-info">
+            <h1>{{ itemDetails.name }}</h1>
+            <p class="brand"><strong>Brand:</strong> {{ itemDetails.brandName }}</p>
+            <p class="type"><strong>Type:</strong> {{ itemDetails.productTypeName }}</p>
+            <p class="gender"><strong>Gender:</strong> {{ itemDetails.gender }}</p>
+            <p class="description"><strong>Description:</strong> {{ itemDetails.description }}</p>
+            <p class="price"><strong>Price:</strong> ${{ itemDetails.price }}</p>
+            <div class="butn">
+                <button (click)="addToCart(itemDetails)" class="Cart">Add To Cart</button>
+                <button class="wishlist" (click)="addToWishList(itemDetails)">Add To Wish List</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="clothes-details" *ngIf="itemSource === 'shoes' && shoesItemDetails">
+        <div class="circle circle-one"></div>
+        <div class="circle circle-two"></div>
+        <div class="clothes-image">
+            <img [src]="shoesItemDetails.picture" [alt]="shoesItemDetails.name">
+        </div>
+        <div class="clothes-info">
+            <h1>{{ shoesItemDetails.name }}</h1>
+            <p class="brand"><strong>Brand:</strong> {{ shoesItemDetails.brandName }}</p>
+            <p class="type"><strong>Type:</strong> {{ shoesItemDetails.productTypeName }}</p>
+            <p class="gender"><strong>Gender:</strong> {{ shoesItemDetails.gender }}</p>
+            <p class="description"><strong>Description:</strong> {{ shoesItemDetails.description }}</p>
+            <p class="price"><strong>Price:</strong> ${{ shoesItemDetails.price }}</p>
+            <div class="butn">
+                <button (click)="addToCart(shoesItemDetails)" class="Cart">Add To Cart</button>
+                <button class="wishlist" (click)="addToWishList(shoesItemDetails)">Add To Wish List</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="clothes-details" *ngIf="!itemSource && (itemDetails || shoesItemDetails)">
+        <div class="circle circle-one"></div>
+        <div class="circle circle-two"></div>
+        <div class="clothes-image">
+            <img [src]="(itemDetails || shoesItemDetails)?.picture" [alt]="(itemDetails || shoesItemDetails)?.name">
+        </div>
+        <div class="clothes-info">
+            <h1>{{ (itemDetails || shoesItemDetails)?.name }}</h1>
+            <p class="brand"><strong>Brand:</strong> {{ (itemDetails || shoesItemDetails)?.brandName }}</p>
+            <p class="type"><strong>Type:</strong> {{ (itemDetails || shoesItemDetails)?.productTypeName }}</p>
+            <p class="gender"><strong>Gender:</strong> {{ (itemDetails || shoesItemDetails)?.gender }}</p>
+            <p class="description"><strong>Description:</strong> {{ (itemDetails || shoesItemDetails)?.description }}
+            </p>
+            <p class="price"><strong>Price:</strong> ${{ (itemDetails || shoesItemDetails)?.price }}</p>
+            <div class="butn">
+                <button (click)="addToCart(itemDetails || shoesItemDetails)" class="Cart">Add To Cart</button>
+                <button class="wishlist" (click)="addToWishList(itemDetails || shoesItemDetails)">Add To Wish
+                    List</button>
+            </div>
+        </div>
+    </div>
+</div>

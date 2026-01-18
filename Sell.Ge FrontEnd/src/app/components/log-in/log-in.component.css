@@ -1,0 +1,209 @@
+
+a {
+    text-decoration: none;
+    color: var(--registration1-color);
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    position: relative;
+    width: 22.2rem;
+}
+
+.form-container {
+    border: 1px solid var(--registration5-color);
+    box-shadow: 0 0 36px 1px var(--card-border-hover-color);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    z-index: 99;
+    padding: 2rem;
+}
+
+.login-container form input {
+    display: block;
+    width: 100%;
+    padding: 14.5px;
+    margin: 2rem 0;
+    color: #2e2e2e;
+    background-color: var(--login3-color);
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    font-size: 15px;
+    backdrop-filter: blur(15px);
+}
+
+.login-container form input:focus {
+    box-shadow: 0 0 16px 1px var(--card-border-hover-color);
+    animation: wobble 0.3s ease-in;
+}
+
+.login-container form button {
+    background-color: var(--login2-color);
+    color: var(--login1-color);
+    display: block;
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.login-container form button:hover {
+    box-shadow: 0 0 10px 1px var(--card-box-shadow);
+    transform: scale(1.02);
+}
+
+.circle {
+    width: 8rem;
+    height: 8rem;
+    background: var(--login2-color);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.illustration {
+    position: absolute;
+    top: -14%;
+    right: -2px;
+    width: 90%;
+}
+
+.circle-one {
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: translate(-45%, -45%);
+}
+
+.circle-two {
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    transform: translate(45%, 45%);
+}
+
+.register-forget {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.opacity {
+    opacity: 0.6;
+}
+
+@keyframes wobble {
+    0% {
+        transform: scale(1.025);
+    }
+
+    25% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.025);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .circle-one {
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transform: translate(0%, -45%);
+    }
+
+    .circle-two {
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        transform: translate(0%, 45%);
+    }
+}
+
+::ng-deep .swal-glass-popup {
+    background: rgba(169, 169, 169, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .swal-glass-title {
+    color: #808080; 
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+::ng-deep .swal-glass-footer {
+    color: #696969;  
+    text-decoration: none;
+}
+
+::ng-deep .swal2-icon {
+    background: none;
+    border: 2px solid #808080;  
+    color: #808080;  
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-ring {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+::ng-deep .swal2-icon.swal2-success {
+    background: none !important;
+    border: 2px solid #808080; 
+    color: #808080; 
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-ring {
+    border: none !important;
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-line-tip,
+::ng-deep .swal2-icon.swal2-success .swal2-success-line-long {
+    background-color: #808080 !important;
+}
+
+::ng-deep .swal-text {
+    color: #808080; 
+}
+
+::ng-deep .swal-glass-footer a {
+    color: #696969; 
+    text-decoration: none !important;
+    font-size: larger;
+    font-weight: bold;
+}
+
+::ng-deep .swal-glass-footer a:hover {
+    scale: 1.2;
+}
+
+::ng-deep .swal-glass-confirbutton {
+    background-color: #d3d3d3;  
+    color: black; 
+}

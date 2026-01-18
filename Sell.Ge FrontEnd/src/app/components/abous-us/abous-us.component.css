@@ -1,0 +1,244 @@
+
+.about-us {
+  position: relative;
+  background: var(--registration4-color);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px var(--card-border-hover-color);
+  border-radius: 15px;
+  color: var(--registration1-color);
+  padding: 30px 15px;
+  overflow: hidden;
+  width: 800px;
+  margin: 50px auto;
+}
+
+.about-us::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  opacity: 0.4;
+}
+
+.about-container {
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.circle {
+  width: 8rem;
+  height: 8rem;
+  background: var(--contact1-color);
+  border-radius: 50%;
+  position: absolute;
+  backdrop-filter: blur(15px);
+  opacity: 0.5;
+}
+
+.circle-one {
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transform: translate(-45%, -45%);
+}
+
+.circle-two {
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  transform: translate(45%, 45%);
+}
+
+.about-content h1 {
+  font-size: 2rem;
+  /* Reduced size */
+  margin-bottom: 15px;
+  color: var(--registration1-color);
+}
+
+.about-content h1 span {
+  color: var(--contact1-color);
+}
+
+.about-content h2 {
+  font-size: 1.5rem;
+  margin: 20px 0 10px;
+  color: var(--registration1-color);
+}
+
+.about-content p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--registration4-color);
+  margin-bottom: 15px;
+}
+
+.about-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  color: var(--registration1-color);
+}
+
+.about-content ul li {
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.about-content a.shop-now-btn {
+  background-color: var(--contact1-color);
+  color: var(--registration1-color);
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.about-content a.shop-now-btn:hover {
+  background-color: var(--aboutus1-color);
+  transform: scale(1.05);
+}
+
+.female {
+  margin: 20px 0;
+}
+
+.illustration {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 70%;
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .about-us {
+    width: 90%;
+  }
+
+  .about-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .about-content p {
+    font-size: 0.8rem;
+  }
+
+  .circle {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+@keyframes wobble {
+  0% {
+    transform: scale(1.025);
+  }
+
+  25% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.025);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.containerBottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 20px;
+  padding: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+  backdrop-filter: blur(15px);
+  background: var(--registration5-color);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px var(--card-border-hover-color);
+}
+
+.routerBtn {
+  text-align: center;
+  padding: 20px;
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  border: 1px solid var(--registration4-color);
+  border-radius: 15px;
+  background: var(--registration5-color);
+  box-shadow: 0 4px 20px var(--card-border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.routerBtn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px var(--card-border-hover-color);
+}
+
+.routerBtn h1 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--registration1-color);
+}
+
+.routerBtn .bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.shop-now-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: var(--contact1-color);
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  flex: 1;
+  transition: all 0.3s ease;
+}
+
+.shop-now-btn:hover {
+  background: var(--aboutus1-color);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .containerBottom {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .routerBtn {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

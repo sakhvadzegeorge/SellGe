@@ -1,0 +1,222 @@
+<div class="loader-container" *ngIf="isLoading">
+  <div class="loader">
+    <div class="cell d-0"></div>
+    <div class="cell d-1"></div>
+    <div class="cell d-2"></div>
+    <div class="cell d-1"></div>
+    <div class="cell d-2"></div>
+    <div class="cell d-2"></div>
+    <div class="cell d-3"></div>
+    <div class="cell d-3"></div>
+    <div class="cell d-4"></div>
+  </div>
+</div>
+
+<section>
+  <div class="container" *ngFor="let clothes of filteredClothes | slice: 0:shown">
+    <div class="container-body" (click)="onSelectClothes(clothes.id)">
+      <div class="left">
+        <img [src]="clothes.picture" alt="{{clothes.name}}">
+      </div>
+      <div class="right">
+        <h5>{{clothes.name}}</h5>
+        <p>{{clothes.brandName}}</p>
+        <p>{{clothes.productTypeName}}</p>
+        <p [ngClass]="getStockClass(clothes.quantity)">{{ getStockText(clothes.quantity) }}</p>
+        <p>${{clothes.price}}</p>
+      </div>
+    </div>
+
+    <div class="add-container">
+      <div class="add">
+        <a (click)="addToWishList(clothes)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-heart"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+          </svg>
+        </a>
+
+        <a (click)="addToCart(clothes)" [class.disabled]="isAddToCartDisabled(clothes.quantity)"
+          [attr.aria-disabled]="isAddToCartDisabled(clothes.quantity)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart"
+            viewBox="0 0 16 16">
+            <path
+              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<button (click)="showMore()" *ngIf="!isLoading && shown < filteredClothes.length">
+  <p>ShowMore</p>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down"
+    viewBox="0 0 16 16">
+    <path fill-rule="evenodd"
+      d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
+  </svg>
+</button>
+
+<div class="popup-container" *ngIf="showPopup" (click)="closePopupOnOutsideClick($event)">
+  <div class="popup" (click)="$event.stopPropagation()">
+    <div class="popup-inner" *ngIf="selectedClothes">
+      <div class="popup-image-container">
+        <img (click)="closePopup()" class="popup-image" [src]="selectedClothes.picture"
+          alt="{{ selectedClothes.name }}">
+        <div class="popup-add-container">
+          <div class="popup-add">
+            <a (click)="addToWishList(selectedClothes)">
+              <svg xmlns="http://www.w3.org2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-heart"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+              </svg>
+            </a>
+            <a (click)="addToCart(selectedClothes)" [class.disabled]="isAddToCartDisabled(selectedClothes.quantity)"
+              [attr.aria-disabled]="isAddToCartDisabled(selectedClothes.quantity)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart"
+                viewBox="0 0 16 16">
+                <path
+                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="popup-right">
+        <div class="popup-top">
+          <h2 class="popup-title">{{ selectedClothes.name }}</h2>
+          <p class="popup-detail">Brand: {{ selectedClothes.brandName }}</p>
+          <p class="popup-detail">Type: {{ selectedClothes.productTypeName }}</p>
+        </div>
+
+        <div class="popup-middle">
+          <p class="popup-detail">Size: {{ selectedClothes.clothSize }}</p>
+          <p class="popup-detail">Price: ${{ selectedClothes.price }}</p>
+          <p class="popup-detail" [ngClass]="getStockClass(selectedClothes.quantity)">{{
+            getStockText(selectedClothes.quantity) }}</p>
+        </div>
+
+        <div class="popup-bottom">
+          <p class="popup-detail">Description: {{ selectedClothes.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="circle circle-one"></div>
+    <div class="circle circle-two"></div>
+  </div>
+</div>
+
+<div class="filterIcon" (click)="toggleFilter()">
+  <div class="filterText" *ngIf="!isFilterVisible">
+    <h5>FILTER</h5>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-gear" viewBox="0 0 16 16">
+    <path
+      d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+    <path
+      d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+  </svg>
+</div>
+
+<div class="filterContainer" *ngIf="isFilterVisible">
+  <div class="filterMain">
+    <svg (click)="closeFilter()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      class="bi bi-x-diamond" viewBox="0 0 16 16">
+      <path
+        d="M7.987 16a1.53 1.53 0 0 1-1.07-.448L.45 9.082a1.53 1.53 0 0 1 0-2.165L6.917.45a1.53 1.53 0 0 1 2.166 0l6.469 6.468A1.53 1.53 0 0 1 16 8.013a1.53 1.53 0 0 1-.448 1.07l-6.47 6.469A1.53 1.53 0 0 1 7.988 16zM7.639 1.17 4.766 4.044 8 7.278l3.234-3.234L8.361 1.17a.51.51 0 0 0-.722 0M8.722 8l3.234 3.234 2.873-2.873c.2-.2.2-.523 0-.722l-2.873-2.873zM8 8.722l-3.234 3.234 2.873 2.873c.2.2.523.2.722 0l2.873-2.873zM7.278 8 4.044 4.766 1.17 7.639a.51.51 0 0 0 0 .722l2.874 2.873z" />
+    </svg>
+
+    <div class="filterMainSection">
+      <div class="filterHeader">
+        <div class="search-group">
+          <div class="search">
+            <div class="search__container">
+              <input class="search__input" type="text" placeholder="Search Brand" id="searchBrand"
+                [(ngModel)]="brandQuery">
+            </div>
+          </div>
+          <div class="search">
+            <div class="search__container">
+              <input class="search__input" type="text" placeholder="Search Product Name" id="searchProduct"
+                [(ngModel)]="productNameQuery">
+            </div>
+          </div>
+        </div>
+
+        <div class="size">
+          <h5>SELECT SIZE</h5>
+          <div class="radio-input">
+            <label>
+              <input value="S" name="value-radio" id="value-1" type="radio" [(ngModel)]="selectedSize">
+              <span>S</span>
+            </label>
+            <label>
+              <input value="M" name="value-radio" id="value-2" type="radio" [(ngModel)]="selectedSize">
+              <span>M</span>
+            </label>
+            <label>
+              <input value="L" name="value-radio" id="value-3" type="radio" [(ngModel)]="selectedSize">
+              <span>L</span>
+            </label>
+            <label>
+              <input value="XL" name="value-radio" id="value-4" type="radio" [(ngModel)]="selectedSize">
+              <span>XL</span>
+            </label>
+            <label>
+              <input value="XXL" name="value-radio" id="value-5" type="radio" [(ngModel)]="selectedSize">
+              <span>XXL</span>
+            </label>
+            <span class="selection"></span>
+          </div>
+        </div>
+
+        <div class="price-range">
+          <h5>Price Range</h5>
+          <div class="price-input-group">
+            <input type="number" [(ngModel)]="priceFrom" placeholder="Min" class="price-input" min="0">
+
+            <span class="price-separator">-</span>
+
+            <input type="number" [(ngModel)]="priceTo" placeholder="Max" class="price-input" min="0">
+          </div>
+        </div>
+        <div class="filter-section">
+          <h5>SORT BY</h5>
+          <select class="filter-select" [(ngModel)]="selectedSort">
+            <option value="default">Default</option>
+            <option value="price-low-high">Price: Low to High</option>
+            <option value="price-high-low">Price: High to Low</option>
+            <option value="name-asc">Name: A-Z</option>
+            <option value="name-desc">Name: Z-A</option>
+          </select>
+        </div>
+
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="inStockOnly" [(ngModel)]="inStockOnly">
+            <label for="inStockOnly">In Stock Only</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="filterFooter">
+        <button class="submit" (click)="applyFilters()">APPLY FILTERS</button>
+        <button class="reset" (click)="resetFilters()">RESET ALL</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="scroll_to_top" *ngIf="showScrollToTop">
+  <a (click)="scrollToTop()">
+    <svg class="stp" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="pink" viewBox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5 9.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z" />
+    </svg>
+  </a>
+</div>

@@ -1,0 +1,76 @@
+<section class="orders-container">
+
+  <div class="circle circle-one"></div>
+
+  <h1>MY ORDERS</h1>
+
+  <div class="tabs">
+    <button class="tab" [class.active]="activeTab === 'pending'" (click)="activeTab='pending'">
+      PENDING
+    </button>
+    <button class="tab" [class.active]="activeTab === 'delivered'" (click)="activeTab='delivered'">
+      DELIVERED
+    </button>
+  </div>
+
+  <div *ngIf="activeTab === 'pending'">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>PICTURE</th>
+          <th>NAME</th>
+          <th>TYPE</th>
+          <th>SIZE</th>
+          <th>PRICE</th>
+          <th>STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let p of pending">
+          <tr *ngFor="let i of p.items">
+            <td>
+              <img [src]="i.picture" class="item-image" />
+            </td>
+            <td>{{ i.itemName }}</td>
+            <td>{{ i.clothId ? 'Clothes' : 'Shoes' }}</td>
+            <td>{{ i.size || '-' }}</td>
+            <td>${{ i.unitPrice }}</td>
+            <td class="status pending">PENDING</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="activeTab === 'delivered'">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>PICTURE</th>
+          <th>NAME</th>
+          <th>TYPE</th>
+          <th>SIZE</th>
+          <th>PRICE</th>
+          <th>STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let p of history">
+          <tr *ngFor="let i of p.items">
+            <td>
+              <img [src]="i.picture" class="item-image" />
+            </td>
+            <td>{{ i.itemName }}</td>
+            <td>{{ i.clothId ? 'Clothes' : 'Shoes' }}</td>
+            <td>{{ i.size || '-' }}</td>
+            <td>${{ i.unitPrice }}</td>
+            <td class="status delivered">DELIVERED</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="circle circle-two"></div>
+
+</section>

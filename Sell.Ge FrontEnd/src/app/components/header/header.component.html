@@ -1,0 +1,262 @@
+<div class="top">
+  <div class="topleft">
+    <div class="tl1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone"
+        viewBox="0 0 16 16">
+        <path
+          d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+      </svg>
+      <p class="phone_number">020-800-456-747</p>
+    </div>
+    <div class="line">
+      <p></p>
+    </div>
+
+    <div class="tl2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-truck"
+        viewBox="0 0 16 16">
+        <path
+          d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+      </svg>
+      <p class="shipping">Free shipping on orders over $300</p>
+    </div>
+  </div>
+  <div class="topright">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <img [src]="currentLang === 'en' ? 'SVG/England.svg' : 'SVG/georgia.svg'" class="svg">
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" (click)="changeLanguage('en')">
+            <img src="SVG/England.svg" class="svg"> ENGLISH
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="changeLanguage('ka')">
+            <img src="SVG/georgia.svg" class="svg"> GEORGIAN
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="line2">
+      <p></p>
+    </div>
+    <div class="tr2">
+      <div class="checkbox-wrapper-5">
+        <div class="check">
+          <input id="check-5" type="checkbox" [checked]="isDarkTheme" (change)="toggleTheme($event)" />
+          <label for="check-5"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="hl" routerLink="/">
+    <svg class="navbar-brand-svg custom-svg" viewBox="0 0 65 16" width="85" height="20" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path class="navbar-brand-svg-text"
+        d="M5.72266 18.1562C4.88281 18.1562 4.08529 18.0033 3.33008 17.6973C2.58138 17.3913 1.94661 16.9355 1.42578 16.3301C0.911458 15.7181 0.582682 14.9759 0.439453 14.1035L2.90039 13.4785C2.98503 14.2988 3.28776 14.9173 3.80859 15.334C4.33594 15.7507 4.98698 15.959 5.76172 15.959C6.23698 15.959 6.64714 15.8841 6.99219 15.7344C7.33724 15.5781 7.59766 15.3665 7.77344 15.0996C7.94922 14.8327 8.03711 14.5332 8.03711 14.2012C8.03711 13.804 7.91341 13.4655 7.66602 13.1855C7.42513 12.9056 7.1224 12.6745 6.75781 12.4922C6.39323 12.3099 5.89193 12.0918 5.25391 11.8379C4.42057 11.5059 3.74674 11.1999 3.23242 10.9199C2.7181 10.6335 2.27539 10.2363 1.9043 9.72852C1.53971 9.2207 1.35742 8.57943 1.35742 7.80469C1.35742 7.01693 1.54948 6.33659 1.93359 5.76367C2.32422 5.18424 2.84505 4.74479 3.49609 4.44531C4.15365 4.14583 4.8763 3.99609 5.66406 3.99609C6.54948 3.99609 7.35677 4.19792 8.08594 4.60156C8.8151 4.9987 9.40755 5.60417 9.86328 6.41797L7.80273 7.67773C7.56185 7.20898 7.24609 6.84766 6.85547 6.59375C6.46484 6.33333 6.03841 6.20312 5.57617 6.20312C5.25065 6.20312 4.95443 6.26497 4.6875 6.38867C4.42708 6.51237 4.21875 6.68815 4.0625 6.91602C3.91276 7.13737 3.83789 7.39128 3.83789 7.67773C3.83789 8.0293 3.95182 8.32878 4.17969 8.57617C4.40755 8.82357 4.69401 9.0319 5.03906 9.20117C5.39062 9.37044 5.86914 9.57227 6.47461 9.80664C7.33398 10.1387 8.0306 10.4512 8.56445 10.7441C9.09831 11.0371 9.55729 11.4473 9.94141 11.9746C10.3255 12.502 10.5176 13.1693 10.5176 13.9766C10.5176 14.8229 10.3027 15.5618 9.87305 16.1934C9.44987 16.8249 8.8737 17.3099 8.14453 17.6484C7.41536 17.987 6.60807 18.1562 5.72266 18.1562ZM16.8906 4.20117H26.0703V6.47656H19.3711V9.96289H25.6113V12.2383H19.3711V15.6562H26.0703V18H16.8906V4.20117ZM33.0586 4.20117H35.5391V15.6562H41.4375V18H33.0586V4.20117ZM47.4492 4.20117H49.9297V15.6562H55.8281V18H47.4492V4.20117Z"
+        transform="translate(0 -3)" fill="#212529"></path>
+      <path class="text-primary" d="M62.0254 15.4219H64.418V18H62.0254V15.4219Z" transform="translate(0 -3)"
+        fill="#9A6EE2"></path>
+    </svg>
+  </div>
+  <div class="hm">
+    <div class="dropdown">
+      <button routerLink="/home" class="btn btn-secondary" type="button" routerLink="/">
+        HOME
+      </button>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+        routerLink="/women">
+        <a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: '' }">WOMEN CLOTHES</a>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'CAMISOLES' }">CAMISOLES</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'TANK TOPS' }">TANK TOPS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'TEE SHIRTS' }">TEE
+            SHIRTS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'SHIRTS & BLOUSES' }">SHIRTS
+            & BLOUSES</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']"
+            [queryParams]="{ type: 'SWEATERS & CARDIGANS' }">SWEATERS & CARDIGANS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'PYJAMAS' }">PYJAMAS</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button routerLink="/women-bottoms" class="btn btn-secondary dropdown-toggle" type="button"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: ''}">WOMEN SHOES</a>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'SLIP-ONS'}">SLIP-ONS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'BOOTS'}">BOOTS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'FLATS'}">FLATS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'SANDALS'}">SANDALS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'HEELS'}">HEELS</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button routerLink="/men-tops" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <a class="dropdown-item" [routerLink]="['/men-tops']" [queryParams]="{type: ''}">MEN CLOTHES</a>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']" [queryParams]="{type: 'TEE SHIRTS'}">TEE SHIRTS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']" [queryParams]="{type: 'TANK TOPS'}">TANK TOPS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']" [queryParams]="{type: 'SHIRTS & BLOUSES'}">SHIRTS &
+            BLOUSES</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']"
+            [queryParams]="{type: 'SWEATERS & CARDIGANS'}">SWEATERS & CARDIGANS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']" [queryParams]="{type: 'PYJAMAS'}">PYJAMAS</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button routerLink="/men-bottoms" class="btn btn-secondary dropdown-toggle" type="button"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: ''}">MEN SHOES</a>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'SNEAKERS'}">SNEAKERS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'LOAFERS'}">LOAFERS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'BOOTS'}">BOOTS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'RUNNING SHOES'}">RUNNING
+            SHOES</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'SLIP-ONS'}">SLIP-ONS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'CLASSIC SHOES'}">CLASSIC
+            SHOES</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'CLOGS'}">CLOGS</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button routerLink="/contact" class="btn btn-secondary" type="button">
+        CONTACT
+      </button>
+    </div>
+  </div>
+  <div class="navsvg">
+    <a (click)="goToProfile()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle"
+        viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+        <path fill-rule="evenodd"
+          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+      </svg>
+    </a>
+    <a (click)="goToWishList()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-heart"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+      </svg>
+    </a>
+    <div class="shop">
+      <a (click)="goToCart()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart"
+          viewBox="0 0 16 16">
+          <path
+            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+        </svg>
+      </a>
+      <div class="amount">{{ cartItemCount }}</div>
+    </div>
+  </div>
+  <div class="burgerMenu" (click)="toggleMenu()">
+    <div class="burgerMenuContainer">
+      <div class="burger"></div>
+      <div class="burger"></div>
+      <div class="burger"></div>
+    </div>
+  </div>
+  <div class="smallScreen" (click)="toggleMenu()">
+    <div class="btn-group dropstart">
+      <button routerLink="/" class="btn btn-secondary" type="button" routerLink="/">
+        HOME
+      </button>
+    </div>
+    <div class="btn-group dropstart">
+      <button routerLink="/women-tops" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        WOMEN CLOTHES
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'CAMISOLES' }">CAMISOLES</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'TANK TOPS' }">TANK TOPS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'TEE SHIRTS' }">TEE
+            SHIRTS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'SHIRTS & BLOUSES' }">SHIRTS
+            & BLOUSES</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']"
+            [queryParams]="{ type: 'SWEATERS & CARDIGANS' }">SWEATERS & CARDIGANS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-tops']" [queryParams]="{ type: 'PYJAMAS' }">PYJAMAS</a></li>
+      </ul>
+    </div>
+    <div class="btn-group dropstart">
+      <button routerLink="/women-bottoms" type="button" class="btn btn-secondary dropdown-toggle"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        WOMEN SHOES
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'SLIP-ONS'}">SLIP-ONS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'BOOTS'}">BOOTS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'FLATS'}">FLATS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'SANDALS'}">SANDALS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/women-bottoms']" [queryParams]="{type: 'HEELS'}">HEELS</a></li>
+      </ul>
+    </div>
+    <div class="btn-group dropstart">
+      <button routerLink="men-tops" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        MEN CLOTHES
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']" [queryParams]="{type: 'TEE SHIRTS'}">TEE SHIRTS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']" [queryParams]="{type: 'TANK TOPS'}">TANK TOPS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']" [queryParams]="{type: 'SHIRTS & BLOUSES'}">SHIRTS &
+            BLOUSES</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']"
+            [queryParams]="{type: 'SWEATERS & CARDIGANS'}">SWEATERS & CARDIGANS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-tops']" [queryParams]="{type: 'PYJAMAS'}">PYJAMAS</a></li>
+      </ul>
+    </div>
+    <div class="btn-group dropstart">
+      <button routerLink="men-bottoms" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        MEN SHOES
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'SNEAKERS'}">SNEAKERS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'LOAFERS'}">LOAFERS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'BOOTS'}">BOOTS</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'RUNNING SHOES'}">RUNNING
+            SHOES</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'SLIP-ONS'}">SLIP-ONS</a>
+        </li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'CLASSIC SHOES'}">CLASSIC
+            SHOES</a></li>
+        <li><a class="dropdown-item" [routerLink]="['/men-bottoms']" [queryParams]="{type: 'CLOGS'}">CLOGS</a></li>
+      </ul>
+    </div>
+    <div class="btn-group dropstart">
+      <button routerLink="/contact" class="btn btn-secondary" type="button">
+        CONTACT
+      </button>
+    </div>
+  </div>
+</header>

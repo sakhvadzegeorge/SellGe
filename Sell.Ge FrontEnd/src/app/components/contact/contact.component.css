@@ -1,0 +1,208 @@
+.contact-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: var(--gradient-color);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 50px auto;
+    box-shadow: 0 8px 32px var(--card-border-hover-color);
+}
+
+.circle {
+    width: 10rem;
+    height: 10rem;
+    background: var(--contact1-color);
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.circle-one {
+    top: -5rem;
+    left: -5rem;
+}
+
+.circle-two {
+    bottom: -5rem;
+    right: -5rem;
+}
+
+.illustration {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 50%;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+.contact-card {
+    background: var(--cart-background3-color);
+    border-radius: 15px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 8px 24px var(--card-border-color);
+}
+
+.contact-card h1 {
+    font-size: 2rem;
+    color: var(--contact1-color);
+    margin-bottom: 1rem;
+}
+
+.contact-card .description {
+    font-size: 1rem;
+    color: var(--card-h2-color);
+    margin-bottom: 2rem;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    background: var(--contact2-color);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px var(--card-border-color);
+    text-align: center;
+}
+
+.info-item i {
+    font-size: 1.5rem;
+    color: var(--contact1-color);
+    margin-bottom: 0.5rem;
+}
+
+.info-item h2 {
+    font-size: 1.2rem;
+    color: var(--card-h2-color);
+    margin-bottom: 0.3rem;
+}
+
+.info-item p {
+    font-size: 0.9rem;
+    color: var(--card-h2-color);
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: var(--contact1-color);
+    color: var(--card-background-color);
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.contact-btn:hover {
+    background: var(--registration2-color);
+    transform: scale(1.05);
+}
+
+.location-section h2 {
+    font-size: 1.5rem;
+    color: var(--contact1-color);
+    margin-bottom: 1rem;
+}
+
+iframe {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px var(--card-border-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .circle {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .illustration {
+        width: 70%;
+        top: 10%;
+        right: 10%;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+::ng-deep .swal-glass-popup {
+    background: rgba(169, 169, 169, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .swal-glass-title {
+    color: #808080; 
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+::ng-deep .swal-glass-footer {
+    color: #696969;  
+    text-decoration: none;
+}
+
+::ng-deep .swal2-icon {
+    background: none;
+    border: 2px solid #808080;  
+    color: #808080;  
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-ring {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+::ng-deep .swal2-icon.swal2-success {
+    background: none !important;
+    border: 2px solid #808080; 
+    color: #808080; 
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-ring {
+    border: none !important;
+}
+
+::ng-deep .swal2-icon.swal2-success .swal2-success-line-tip,
+::ng-deep .swal2-icon.swal2-success .swal2-success-line-long {
+    background-color: #808080 !important;
+}
+
+::ng-deep .swal-text {
+    color: #808080; 
+}
+
+::ng-deep .swal-glass-footer a {
+    color: #696969; 
+    text-decoration: none !important;
+    font-size: larger;
+    font-weight: bold;
+}
+
+::ng-deep .swal-glass-footer a:hover {
+    scale: 1.2;
+}
+
+::ng-deep .swal-glass-confirbutton {
+    background-color: #d3d3d3;  
+    color: black; 
+}

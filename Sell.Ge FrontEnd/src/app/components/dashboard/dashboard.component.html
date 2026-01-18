@@ -1,0 +1,223 @@
+<div class="loader-container" *ngIf="loading">
+  <div class="loader"></div>
+</div>
+
+<section class="dashboard-container" *ngIf="!loading">
+
+  <div *ngIf="errorMessage" class="error-message"
+    style="color: red; padding: 10px; background: #ffeeee; margin: 10px 0;">
+    {{ errorMessage }}
+  </div>
+
+  <div class="circle circle-one"></div>
+
+  <h1>ADMIN DASHBOARD</h1>
+
+  <!-- MAIN CARD -->
+  <div class="card">
+    <div class="header">
+      <h2>Dashboard</h2>
+      <button class="delete-button" (click)="logout()">Logout</button>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab" [class.active]="activeTab === 'clothes'" (click)="activeTab='clothes'">
+        Clothes
+      </button>
+      <button class="tab" [class.active]="activeTab === 'shoes'" (click)="activeTab='shoes'">
+        Shoes
+      </button>
+      <button class="tab" [class.active]="activeTab === 'users'" (click)="activeTab='users'">
+        Users
+      </button>
+    </div>
+
+    <!-- ================= CLOTHES ================= -->
+    <div *ngIf="activeTab === 'clothes'">
+      <div class="toolbar">
+        <input placeholder="Search clothes..." [(ngModel)]="clothesSearch" />
+        <button class="buy" (click)="openClothesModal()">+ Add Clothes</button>
+      </div>
+
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of pagedClothes">
+            <td><img [src]="c.picture" class="item-image" /></td>
+            <td>{{c.name}}</td>
+            <td>{{c.brandName}}</td>
+            <td>{{c.clothSize}}</td>
+            <td>${{c.price}}</td>
+            <td>{{c.quantity}}</td>
+            <td class="actions-cell">
+              <button class="qty-btn" (click)="addClothesStock(c.id)" [disabled]="processing">+</button>
+              <button class="qty-btn" (click)="reduceClothesStock(c.id)" [disabled]="processing">−</button>
+              <button class="move-btn" (click)="openClothesModal(c)" [disabled]="processing">Edit</button>
+              <button class="delete-button" (click)="deleteClothes(c.id)" [disabled]="processing">✕</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination" *ngIf="totalClothesPages > 1">
+        <button class="qty-btn" (click)="prevPage('clothes')" [disabled]="clothesPage === 1">Prev</button>
+        <span>{{clothesPage}} / {{totalClothesPages}}</span>
+        <button class="qty-btn" (click)="nextPage('clothes')"
+          [disabled]="clothesPage === totalClothesPages">Next</button>
+      </div>
+    </div>
+
+    <!-- ================= SHOES ================= -->
+    <div *ngIf="activeTab === 'shoes'">
+      <div class="toolbar">
+        <input placeholder="Search shoes..." [(ngModel)]="shoesSearch" />
+        <button class="buy" (click)="openShoesModal()">+ Add Shoes</button>
+      </div>
+
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of pagedShoes">
+            <td><img [src]="s.picture" class="item-image" /></td>
+            <td>{{s.name}}</td>
+            <td>{{s.brandName}}</td>
+            <td>{{s.shoeSize}}</td>
+            <td>${{s.price}}</td>
+            <td>{{s.quantity}}</td>
+            <td class="actions-cell">
+              <button class="qty-btn" (click)="addShoesStock(s.id)" [disabled]="processing">+</button>
+              <button class="qty-btn" (click)="reduceShoesStock(s.id)" [disabled]="processing">−</button>
+              <button class="move-btn" (click)="openShoesModal(s)" [disabled]="processing">Edit</button>
+              <button class="delete-button" (click)="deleteShoes(s.id)" [disabled]="processing">✕</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination" *ngIf="totalShoesPages > 1">
+        <button class="qty-btn" (click)="prevPage('shoes')" [disabled]="shoesPage === 1">Prev</button>
+        <span>{{shoesPage}} / {{totalShoesPages}}</span>
+        <button class="qty-btn" (click)="nextPage('shoes')" [disabled]="shoesPage === totalShoesPages">Next</button>
+      </div>
+    </div>
+
+    <!-- ================= USERS ================= -->
+    <div *ngIf="activeTab === 'users'">
+      <div class="toolbar">
+        <input placeholder="Search users..." [(ngModel)]="usersSearch" />
+      </div>
+
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of pagedUsers">
+            <td>{{u.firstName}} {{u.lastName}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.role === 1 ? 'Admin' : 'User'}}</td>
+            <td class="actions-cell">
+              <button class="move-btn" (click)="openUserModal(u)" [disabled]="processing">Edit</button>
+              <button class="buy" (click)="promoteUser(u.id)" [disabled]="processing">Promote</button>
+              <button class="delete-button" (click)="deleteUser(u.id)" [disabled]="processing">✕</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination" *ngIf="totalUsersPages > 1">
+        <button class="qty-btn" (click)="prevPage('users')" [disabled]="usersPage === 1">Prev</button>
+        <span>{{usersPage}} / {{totalUsersPages}}</span>
+        <button class="qty-btn" (click)="nextPage('users')" [disabled]="usersPage === totalUsersPages">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+  <div class="modal" *ngIf="showClothesModal">
+    <div class="modal-card">
+      <h3>{{isEditing ? 'Edit Clothes' : 'Add Clothes'}}</h3>
+      <input placeholder="Image URL" [(ngModel)]="newClothes.picture" [disabled]="processing" />
+      <input placeholder="Name" [(ngModel)]="newClothes.name" [disabled]="processing" />
+      <input placeholder="Brand" [(ngModel)]="newClothes.brandName" [disabled]="processing" />
+      <input placeholder="Type" [(ngModel)]="newClothes.productTypeName" [disabled]="processing" />
+      <input placeholder="Size" [(ngModel)]="newClothes.clothSize" [disabled]="processing" />
+      <input placeholder="Gender" [(ngModel)]="newClothes.gender" [disabled]="processing" />
+      <input placeholder="Price" type="number" [(ngModel)]="newClothes.price" [disabled]="processing" />
+      <input placeholder="Quantity" type="number" [(ngModel)]="newClothes.quantity" [disabled]="processing" />
+      <textarea placeholder="Description" [(ngModel)]="newClothes.description" [disabled]="processing"></textarea>
+
+      <div class="modal-actions">
+        <button class="move-btn" (click)="saveClothes()" [disabled]="processing">Save</button>
+        <button class="buy" (click)="closeModals()" [disabled]="processing">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="showShoesModal">
+    <div class="modal-card">
+      <h3>{{isEditing ? 'Edit Shoes' : 'Add Shoes'}}</h3>
+      <input placeholder="Image URL" [(ngModel)]="newShoes.picture" [disabled]="processing" />
+      <input placeholder="Name" [(ngModel)]="newShoes.name" [disabled]="processing" />
+      <input placeholder="Brand" [(ngModel)]="newShoes.brandName" [disabled]="processing" />
+      <input placeholder="Type" [(ngModel)]="newShoes.productTypeName" [disabled]="processing" />
+      <input placeholder="Size" [(ngModel)]="newShoes.shoeSize" [disabled]="processing" />
+      <input placeholder="Gender" [(ngModel)]="newShoes.gender" [disabled]="processing" />
+      <input placeholder="Price" type="number" [(ngModel)]="newShoes.price" [disabled]="processing" />
+      <input placeholder="Quantity" type="number" [(ngModel)]="newShoes.quantity" [disabled]="processing" />
+      <textarea placeholder="Description" [(ngModel)]="newShoes.description" [disabled]="processing"></textarea>
+
+      <div class="modal-actions">
+        <button class="move-btn" (click)="saveShoes()" [disabled]="processing">Save</button>
+        <button class="buy" (click)="closeModals()" [disabled]="processing">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="showUserModal">
+    <div class="modal-card">
+      <h3>Edit User</h3>
+      <input placeholder="First name" [(ngModel)]="newUser.firstName" [disabled]="processing" />
+      <input placeholder="Last name" [(ngModel)]="newUser.lastName" [disabled]="processing" />
+      <input placeholder="Email" [(ngModel)]="newUser.email" [disabled]="processing" />
+      <input placeholder="Age" type="number" [(ngModel)]="newUser.age" [disabled]="processing" />
+      <input placeholder="Phone" [(ngModel)]="newUser.phone" [disabled]="processing" />
+      <input placeholder="Address" [(ngModel)]="newUser.address" [disabled]="processing" />
+      <input placeholder="Zip code" [(ngModel)]="newUser.zipCode" [disabled]="processing" />
+      <input placeholder="Avatar URL" [(ngModel)]="newUser.avatar" [disabled]="processing" />
+
+      <div class="modal-actions">
+        <button class="move-btn" (click)="saveUser()" [disabled]="processing">Save</button>
+        <button class="buy" (click)="closeModals()" [disabled]="processing">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="circle circle-two"></div>
+</section>
